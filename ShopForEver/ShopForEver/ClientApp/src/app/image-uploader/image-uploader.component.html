@@ -1,0 +1,21 @@
+<div class="row">
+  <p>Add new item to shop here:</p>
+  <hr>
+  <label for="Image Upload">
+    <input #file
+           placeholder="Choose File"
+           (change)="uploadFile(file.files)"
+           type="file"
+           accept="image/"
+           style="display: none" />
+  </label>
+  <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+  <div>
+    <span *ngIf="progress > 0">
+      {{progress}}%
+    </span>
+    <span class="upload" *ngIf="message">
+      {{message}}%
+    </span>
+  </div>
+</div>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Data.Entitys
+namespace ShopForEver.Data.Entitys
 {
     public class ImageUrl
     {

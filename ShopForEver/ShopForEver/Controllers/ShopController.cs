@@ -6,18 +6,71 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Firebase.Database;
 using Firebase.Database.Query;
-using Data.Entitys;
+using ShopForEver.Data.Entitys;
 using System.IO;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace ShopForEver.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ShopController : ControllerBase
     {
-        // GET: api/Shop
+
+        //Get: api/shop
         [HttpGet]
-        public async Task<IEnumerable<string>> Get()
+        public async Task<string> Get()
+        {
+            var firebaseClient = new FirebaseClient("https://shopforever-11ffa.firebaseio.com/");
+            var dbImageUrls = await firebaseClient
+                .Child("ImageUrls")
+                .OnceAsync<List<ImageUrl>>();
+
+            //var images = new List<ImageUrl>();
+
+            //Convert JSON data to original datatype
+            //foreach (var img in dbImageUrls)
+            //{
+            //    images.Add(img);
+            //}
+
+            return "hello";
+        }
+
+        public string getImages()
+        {
+            return "Test";
+        }
+
+
+        // GET: api/Shop/5
+        [HttpGet("{id}", Name = "Get")]
+        public string Get(int id)
+        {
+            return "value";
+        }
+
+        // POST: api/Shop
+        [HttpPost]
+        public void Post([FromBody] string value)
+        {
+        }
+
+        // PUT: api/Shop/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
+
+        // DELETE: api/ApiWithActions/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+        }
+
+        // Seed images to firebase
+        [HttpGet]
+        public async void SeedImages()
         {
 
 
@@ -62,55 +115,6 @@ namespace ShopForEver.Controllers
                     .Child("ImageUrls")
                     .PostAsync(img);
             }
-
-            var dbImageUrls = await firebaseClient
-                .Child("ImageUrls")
-                .OnceAsync<List<ImageUrl>>();
-
-
-            //Save non identifying data to Firebase
-            //var barcelonaImg = new ImageUrl() { id = imgId, Name = name, Url = url };
-            //var firebaseClient = new FirebaseClient("https://shopforever-11ffa.firebaseio.com/");
-            //var result = await firebaseClient
-            //.Child("ImageUrls")
-            //.PostAsync(barcelonaImg);
-
-
-
-            //var images = new List<ImageUrl>();
-
-            //Convert JSON data to original datatype
-            //foreach (var img in dbImageUrls)
-            //{
-            //    images.Add(img);
-            //}
-
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/Shop/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Shop
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT: api/Shop/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
 
     }

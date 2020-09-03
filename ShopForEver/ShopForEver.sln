@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopForEver", "ShopForEver\ShopForEver.csproj", "{2C4E8FFE-AD03-434F-943E-E189FCE7D16E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{4B548BCA-6D23-4539-B763-8488D913A368}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopForEver.Data", "Data\ShopForEver.Data.csproj", "{4B548BCA-6D23-4539-B763-8488D913A368}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopForEver.Service", "Service\ShopForEver.Service.csproj", "{915F9B1B-3AF7-43E7-84B5-73012CF33209}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{4B548BCA-6D23-4539-B763-8488D913A368}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B548BCA-6D23-4539-B763-8488D913A368}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B548BCA-6D23-4539-B763-8488D913A368}.Release|Any CPU.Build.0 = Release|Any CPU
+		{915F9B1B-3AF7-43E7-84B5-73012CF33209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{915F9B1B-3AF7-43E7-84B5-73012CF33209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{915F9B1B-3AF7-43E7-84B5-73012CF33209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{915F9B1B-3AF7-43E7-84B5-73012CF33209}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
