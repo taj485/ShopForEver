@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using ShopForEver.Service.Models;
 
 namespace ShopForEver.Controllers
@@ -16,11 +17,15 @@ namespace ShopForEver.Controllers
     public class ManageItemController : ControllerBase
     {
         private readonly IWebHostEnvironment hostEnvironment;
+        private readonly IConfiguration configuration; 
 
-        public ManageItemController(IWebHostEnvironment hostEnvironment)
+
+        public ManageItemController(IWebHostEnvironment hostEnvironment, IConfiguration iConfig)
         {
             this.hostEnvironment = hostEnvironment;
+            configuration = iConfig;
         }
+
 
         [HttpGet]
         public string getTest()
@@ -34,11 +39,12 @@ namespace ShopForEver.Controllers
             try
             {
                 var imageFile = Request.Form.Files[0];
-                var folderName = Path.Combine("Resources", "Images");
+                var folderName = Path.Combine("ClientApp", "src","assets","Football");
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-                if(imageFile.Length > 0)
+                var fileSizeLimit = int.Parse(configuration.GetSection("FileSizeLimit").Value);
+                if (imageFile.Length > 0 && imageFile.Length < fileSizeLimit)
                 {
-                    var imageName = ContentDispositionHeaderValue.Parse(imageFile.ContentDisposition).FileName;
+                    var imageName = ContentDispositionHeaderValue.Parse(imageFile.ContentDisposition).FileName.Trim('"');
                     var fullPath = Path.Combine(pathToSave, imageName);
                     var dbPath = Path.Combine(folderName, imageName);
 
